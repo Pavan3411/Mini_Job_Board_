@@ -11,7 +11,7 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`https://mini-job-board-backend.onrender.com/api/jobs/${id}`);
+        const response = await axios.get(`https://mini-job-board-backend1.onrender.com/api/jobs/${id}`);
         setJob(response.data);
         setLoading(false);
       } catch (err) {
