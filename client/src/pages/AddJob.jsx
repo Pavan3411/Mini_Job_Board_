@@ -41,7 +41,7 @@ const AddJob = () => {
 
     setIsSubmitting(true);
     try {
-      await axios.post('https://mini-job-board-backend.onrender.com/api/jobs', formData);
+      await axios.post('https://mini-job-board-backend1.onrender.com/api/jobs', formData);
       navigate('/');
     } catch (err) {
       console.error('Error adding job:', err);
