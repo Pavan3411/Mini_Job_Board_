@@ -5,15 +5,30 @@ const connectDB = require('./config/db');
 const jobRoutes = require('./routes/jobRoutes');
 const app = express();
 
-connectDB();
-
 dotenv.config();
 
-app.use(cors());
+connectDB();
+
+const corsOptions = {
+  origin: [
+    'https://mini-job-board-frontend1.onrender.com', 
+    'http://localhost:3000' 
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+  credentials: true, 
+  optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/jobs', jobRoutes);
 
-app.use((err, req, res, next) => res.status(500).json({message: err.message}));
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: err.message });
+});
+
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is running on port ${process.env.PORT}`));
+app.listen(port, () => console.log(`Server is running on port ${port}`));
