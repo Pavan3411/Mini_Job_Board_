@@ -1,0 +1,19 @@
+# Root-level ignores
+node_modules/
+.env
+.DS_Store
+
+# Client-side ignores
+client/node_modules/
+client/.env
+client/dist/
+
+# Server-side ignores
+server/node_modules/
+server/.env
+
+# Logs
+*.log
+
+# OS-generated files
+Thumbs.db
