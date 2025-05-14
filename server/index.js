@@ -10,15 +10,22 @@ dotenv.config();
 connectDB();
 
 const corsOptions = {
-  origin: [
-    'https://mini-job-board-frontend1.onrender.com', 
-    'http://localhost:3000' 
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-  credentials: true, 
-  optionsSuccessStatus: 200 
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://mini-job-board-frontend1.onrender.com',
+      'http://localhost:3000'
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
